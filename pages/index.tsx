@@ -1,16 +1,17 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 /* eslint-disable react-hooks/exhaustive-deps */
 import Head from 'next/head';
-import Link from 'next/link';
 
 import ThreadCard from '../components/ThreadCard';
 
 import { WarningCircle } from 'phosphor-react';
 import { useEffect, useState } from 'react';
 import { useCache } from '../scripts/localCache';
+import { useRouter } from 'next/router';
 
 export default function Home () {
 	const cache = useCache();
+	const router = useRouter();
 
 	const [threadIdArray, setThreadIdArray] = useState(
 		cache.getSavedState(
@@ -210,8 +211,9 @@ export default function Home () {
 		setNewThreadId(input);
 	};
 
-	const reloadCards = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+	const reloadCards = (e: React.MouseEvent<HTMLHeadingElement, MouseEvent>) => {
 		e.preventDefault();
+		router.push('/');
 		setIsReload(true);
 	};
 
@@ -262,9 +264,9 @@ export default function Home () {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<nav className="hflex space-btwn vertical-center">
-				<a href="/" onClick={reloadCards}>
-					<h1>rs-reader</h1>
-				</a>
+				<h1 className="logo" onClick={reloadCards}>
+					rs-reader
+				</h1>
 				{addThreadDiv}
 			</nav>
 			<main className="flex-center list" key={reloadCount}>

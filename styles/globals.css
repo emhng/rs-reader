@@ -122,9 +122,8 @@ nav {
 	z-index: 1;
 }
 
-nav > a {
-	color: black;
-	text-decoration-line: none;
+h1.logo {
+	cursor: pointer;
 }
 
 label > p {
@@ -376,14 +375,14 @@ button.close {
 }
 
 @media screen and (max-width: 819px) {
-	div.title-card,
+	div.thread-card,
 	div.empty-state {
 		width: 90vw;
 	}
 }
 
 @media screen and (max-width: 791px) {
-	div.title-card > h1 {
+	div.thread-card > h1 {
 		margin-bottom: 1rem;
 	}
 }
