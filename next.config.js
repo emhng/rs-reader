@@ -4,9 +4,7 @@ const devMode = {
 	swcMinify: true
 };
 
-const nextConfig = {
+module.exports = {
 	basePath: '/rs-reader',
 	assetPrefix: '/rs-reader'
 };
-
-module.exports = nextConfig;
