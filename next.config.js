@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-}
+const devMode = {
+	reactStrictMode: true,
+	swcMinify: true
+};
 
-module.exports = nextConfig
+const nextConfig = {
+	basePath: '/rs-reader',
+	assetPrefix: '/rs-reader'
+};
+
+module.exports = nextConfig;
