@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
+/* eslint-disable react-hooks/exhaustive-deps */
 import Head from 'next/head';
 import Link from 'next/link';
 
@@ -34,7 +36,7 @@ export default function Home () {
 	useEffect(() => {
 		if (threadIdArray !== null && threadList.length === 0) {
 			if (threadIdArray.length !== 0) {
-				const cardArray = threadIdArray.map(id => {
+				const cardArray = threadIdArray.map((id: string) => {
 					return (
 						<ThreadCard
 							threadId={id}
@@ -73,19 +75,21 @@ export default function Home () {
 	useEffect(() => {
 		if (lastUpdateArray.length === threadIdArray.length) {
 			//Sort the thread IDs by when they were last updated
+			interface lastUpdateObj {
+				id: string;
+				lastUpdate: string;
+			}
 			const unsortedLastUpdateArray = [...lastUpdateArray];
 			const sortedLastUpdateArray = unsortedLastUpdateArray
-				.sort((a, b) => {
+				.sort((a: lastUpdateObj, b: lastUpdateObj) => {
 					let date1 = new Date(a.lastUpdate);
 					let date2 = new Date(b.lastUpdate);
 
 					if (date1 < date2) {
 						return -1;
-					}
-					if (date1 > date2) {
+					} else if (date1 > date2) {
 						return 1;
-					}
-					if (date1 === date2) {
+					} else {
 						return 0;
 					}
 				})
@@ -141,7 +145,7 @@ export default function Home () {
 			cache.remove(deleteThread);
 
 			//Remove thread ID card
-			const newThreadIdArray = threadIdArray.filter(id => {
+			const newThreadIdArray = threadIdArray.filter((id: string) => {
 				if (id !== deleteThread) {
 					return id;
 				}
@@ -159,7 +163,7 @@ export default function Home () {
 		}
 	}, [deleteThread]);
 
-	const addThread = e => {
+	const addThread = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const notDuplicateId = threadIdArray.indexOf(newThreadId) === -1;
 		if (notDuplicateId && threadIdArray.length < threadLimit && newThreadId) {
@@ -197,7 +201,7 @@ export default function Home () {
 		setIsNoInput(true);
 	};
 
-	const inputChangeHandle = e => {
+	const inputChangeHandle = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (isNoInput && e.target.value !== ' ') {
 			setIsNoInput(false);
 		}
@@ -206,7 +210,7 @@ export default function Home () {
 		setNewThreadId(input);
 	};
 
-	const reloadCards = e => {
+	const reloadCards = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
 		e.preventDefault();
 		setIsReload(true);
 	};

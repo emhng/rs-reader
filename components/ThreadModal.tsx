@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { X, LinkSimple, Robot } from 'phosphor-react';
 import { useEffect, useState } from 'react';
 import { getData } from '../scripts/getData';
@@ -28,6 +29,15 @@ const ThreadModal = ({
 	const [lastPostAnchor, setLastPostAnchor] = useState('');
 	const [posts, setPosts] = useState<JSX.Element[] | []>([]);
 
+	interface postDataObj {
+		postId: string;
+		name: string;
+		date?: string;
+		time?: string;
+		userId?: string;
+		message: string;
+	}
+
 	useEffect(() => {
 		if (isReading) {
 			window.scrollTo({ top: 0 });
@@ -40,7 +50,7 @@ const ThreadModal = ({
 			const lastPostId = postsData[postsData.length - 1].postId;
 			const lastPostAnchorString = '#' + threadUrl + '/' + lastPostId;
 			setLastPostAnchor(lastPostAnchorString);
-			const postsArray = postsData.map((post, index) => {
+			const postsArray = postsData.map((post: postDataObj, index: number) => {
 				return (
 					<div
 						className="post hflex"
@@ -74,7 +84,9 @@ const ThreadModal = ({
 		}
 	};
 
-	const modalClickHandle = e => {
+	const modalClickHandle = (
+		e: React.MouseEvent<HTMLDivElement, MouseEvent>
+	) => {
 		//Clicking on modal will not close the modal - modal only closes if close button or background clicked
 		e.stopPropagation();
 	};
@@ -137,28 +149,30 @@ const ThreadModal = ({
 			const lastPostId = freshPostsData[freshPostsData.length - 1].postId;
 			const lastPostAnchorString = '#' + threadUrl + '/' + lastPostId;
 			setLastPostAnchor(lastPostAnchorString);
-			const freshPostsArray = freshPostsData.map((post, index) => {
-				return (
-					<div
-						className="post hflex"
-						key={index}
-						id={threadUrl + '/' + post.postId}
-					>
-						<div className="post-id hflex">
-							<p>{post.postId}</p>
-						</div>
-						<div className="post-info">
-							<div className="hflex post-header">
-								<p>{post.name}</p>
-								<p>{post.date}</p>
-								<p>{post.time}</p>
-								<p>{post.userId}</p>
+			const freshPostsArray = freshPostsData.map(
+				(post: postDataObj, index: number) => {
+					return (
+						<div
+							className="post hflex"
+							key={index}
+							id={threadUrl + '/' + post.postId}
+						>
+							<div className="post-id hflex">
+								<p>{post.postId}</p>
 							</div>
-							<p className="message">{post.message}</p>
+							<div className="post-info">
+								<div className="hflex post-header">
+									<p>{post.name}</p>
+									<p>{post.date}</p>
+									<p>{post.time}</p>
+									<p>{post.userId}</p>
+								</div>
+								<p className="message">{post.message}</p>
+							</div>
 						</div>
-					</div>
-				);
-			});
+					);
+				}
+			);
 			setPosts(freshPostsArray);
 		}
 	}, [freshThreadData]);

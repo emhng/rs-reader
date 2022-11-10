@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { getData } from '../scripts/getData';
 import { ChatCircle, Clock, LinkSimple, Trash, Robot } from 'phosphor-react';
@@ -51,7 +52,10 @@ const ThreadCard = ({
 					? (lastUpdateObject = { id: threadId, lastUpdate: null })
 					: (lastUpdateObject = { id: threadId, lastUpdate: data.lastUpdate });
 
-				setLastUpdateArray(prevState => [...prevState, lastUpdateObject]);
+				setLastUpdateArray((prevState: object[]) => [
+					...prevState,
+					lastUpdateObject
+				]);
 			}
 			setTotalCount(data.totalCount);
 			setPostsData(data.posts);
@@ -62,7 +66,7 @@ const ThreadCard = ({
 	useEffect(() => {
 		if (error) {
 			if (lastUpdateStateFn && setLastUpdateArray) {
-				setLastUpdateArray(prevState => [
+				setLastUpdateArray((prevState: object[]) => [
 					...prevState,
 					{ id: threadId, lastUpdate: null }
 				]);
@@ -116,7 +120,7 @@ const ThreadCard = ({
 		}
 	};
 
-	const deleteHandle = e => {
+	const deleteHandle = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		e.stopPropagation();
 		setDeleteThread(threadId);
 	};
