@@ -1,34 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Rs-Reader
 
-## Getting Started
+Site to read and keep up with 2chsc art forum (doujin board) threads in one place.
 
-First, run the development server:
+## Running Locally
 
-```bash
-npm run dev
-# or
-yarn dev
+NOTE: You will also need to host the API locally
+
+1.  Download the repo by clicking Code -> Download Zip
+2.  Unzip the folder and then using your IDE of choice (i.e. VSCode), open the folder
+3.  Run the following command
+
+```
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Replace the code inside of next.config.js with the following:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true
+}
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+module.exports = nextConfig
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+5. create a .env.local with the following:
 
-## Learn More
+```
+NEXT_PUBLIC_API = "http://localhost:8080/v1/"
+NEXT_PUBLIC_STARTER_THREADS = "1663333702, 1665938896, 1667015689"
+```
 
-To learn more about Next.js, take a look at the following resources:
+You can change what starter threads your local version starts with on first load, just make sure that thread IDs are followed by a , and a space.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+6. Then run the following command to start the server:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+npm run dev
+```
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The site should now be accessible from localhost:3000
