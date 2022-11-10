@@ -115,7 +115,6 @@ p {
 nav {
 	background-color: white;
 	padding: 0.5rem 2vw;
-	background-color: none;
 	position: fixed;
 	top: 0;
 	width: 100vw;
@@ -394,9 +393,12 @@ button.close {
 
 @media screen and (max-width: 771px) {
 	.thread-cont,
-	header > div.header-cont,
 	.post-info {
 		width: 90vw;
+	}
+
+	header > div.header-cont {
+		width: 92vw;
 	}
 
 	.post-header {
