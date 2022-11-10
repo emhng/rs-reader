@@ -2,9 +2,11 @@
 
 Site to read and keep up with 2chsc art forum (doujin board) threads in one place.
 
+[Visit the site](https://emhng.github.io/rs-reader/)
+
 ## Running Locally
 
-NOTE: You will also need to host the API locally
+NOTE: You will also need to host the [API](https://github.com/emhng/reader-api) locally
 
 1.  Download the repo by clicking Code -> Download Zip
 2.  Unzip the folder and then using your IDE of choice (i.e. VSCode), open the folder
