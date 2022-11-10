@@ -300,6 +300,7 @@ button {
 	padding: 0.7rem 1rem;
 	border-radius: 0.5rem;
 	cursor: pointer;
+	color: #111827;
 }
 
 button.add {
@@ -365,6 +366,7 @@ button.close {
 	background-color: #f9fafb;
 	border-radius: 1rem;
 	padding: 1.5rem;
+	/* Make sure long URLs wrap on mobile */
 	overflow-wrap: break-word;
 	word-wrap: break-word;
 }
