@@ -365,6 +365,8 @@ button.close {
 	background-color: #f9fafb;
 	border-radius: 1rem;
 	padding: 1.5rem;
+	overflow-wrap: break-word;
+	word-wrap: break-word;
 }
 
 @media screen and (max-width: 964px) {
