@@ -185,7 +185,7 @@ const ThreadModal = ({
 			<div className="modal" onClick={modalClickHandle}>
 				<header className="">
 					<div className="header-cont">
-						<div className="hflex space-btwn vertical-center title-cont">
+						<div className="hflex space-btwn baseline title-cont">
 							<h2>{title}</h2>
 							<button
 								className="close hflex vertical-center"
