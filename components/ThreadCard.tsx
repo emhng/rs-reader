@@ -35,10 +35,18 @@ const ThreadCard = ({
 	const [error, setError] = useState<string | null>(null);
 	const stateFns = [setLoading, setData, setError];
 
+	const [loadState, setLoadState] = useState('loading');
+
 	//Fetch thread data
 	useEffect(() => {
 		getData(stateFns, threadId);
 	}, []);
+
+	useEffect(() => {
+		if (loading) {
+			setLoadState('loaded');
+		}
+	}, [loading]);
 
 	//If successfully retreived data, set states for thread card generation
 	useEffect(() => {
@@ -126,7 +134,7 @@ const ThreadCard = ({
 	};
 
 	return (
-		<div key={loading}>
+		<div key={loadState}>
 			<div className="thread-card" onClick={clickHandle}>
 				<div className={hasUpdate ? 'update-bubble' : 'hidden'}></div>
 				<h3
@@ -154,7 +162,7 @@ const ThreadCard = ({
 				</div>
 			</div>
 			<ThreadModal
-				title={title}
+				title={title!}
 				threadUrl={threadUrl}
 				threadId={threadId}
 				postsData={postsData}
