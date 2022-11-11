@@ -1,5 +1,7 @@
 # Rs-Reader
 
+![Preview](preview.png)
+
 Site to read and keep up with 2chsc art forum (doujin board) threads in one place.
 
 [Visit the site](https://emhng.github.io/rs-reader/)
@@ -28,7 +30,7 @@ const nextConfig = {
 module.exports = nextConfig
 ```
 
-5. create a .env.local with the following:
+5. Create a .env.local with the following:
 
 ```
 NEXT_PUBLIC_API = "http://localhost:8080/v1/"
